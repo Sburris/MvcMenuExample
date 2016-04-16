@@ -1,0 +1,68 @@
+﻿@using System.Web.Mvc.Html
+@using MvcMenuExample.ViewModels
+@model MenuControls
+
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">MVC Menu Example</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-right:0;">
+      <ul class="nav navbar-nav">
+        @foreach (var item in Model.Items)
+        {
+          if (item is MenuItem)
+          {
+            var i = item as MenuItem;
+
+            if (i.IsActive == true)
+            {
+              <li class="active">@Html.ActionLink(i.Text, i.Action, i.Controller)</li>
+            }
+            else
+            {
+              <li>@Html.ActionLink(i.Text, i.Action, i.Controller)</li>
+            }
+          }
+          else if (item is DropDownSlot)
+          {
+            var d = item as DropDownSlot;
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" data-hover="dropdown">@d.Text <span class="caret" ></span></a>
+              <ul class="dropdown-menu " role="menu">
+                @foreach (var dItem in d.Items)
+                {
+                  if (dItem is MenuItem)
+                  {
+                    var di = dItem as MenuItem;
+                    <li>@Html.ActionLink(di.Text, di.Action, di.Controller, di.Routes, null)</li>
+                  }
+                  else if (dItem is DropDownSeperator)
+                  {
+                    <li class="divider"></li>
+                  }
+                }
+              </ul>
+            </li>
+          }
+
+        }
+      </ul>
+      }
+
+      <div class="navbar-nav navbar-right">
+        Log On
+      </div>
+
+    </div>
+  </div>
+</nav>

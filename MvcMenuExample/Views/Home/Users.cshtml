@@ -1,0 +1,10 @@
+﻿@using MvcMenuExample.Helpers
+
+@{
+    ViewBag.Title = "Users";
+}
+
+@section Menu{ @Html.Partial("_Menu", MenuControlsHelper.GenerateMenu(MenuControlsHelper.MenuPages.Users, CurrentUserHelper.Instance.CurrentUser)) }
+
+<h2>Users</h2>
+

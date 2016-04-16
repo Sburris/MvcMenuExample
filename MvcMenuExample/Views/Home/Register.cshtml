@@ -1,0 +1,8 @@
+﻿@using MvcMenuExample.Helpers
+
+@{ ViewBag.Title = "Register"; }
+
+@section Menu{ @Html.Partial("_Menu", MenuControlsHelper.GenerateMenu(MenuControlsHelper.MenuPages.Register, CurrentUserHelper.Instance.CurrentUser)) }
+
+<h2>Register</h2>
+

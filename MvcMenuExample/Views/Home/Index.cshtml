@@ -1,0 +1,9 @@
+﻿@using MvcMenuExample.Helpers
+@using MvcMenuExample.ViewModels
+
+@{ ViewBag.Title = "Index"; }
+
+@section Menu{ @Html.Partial("_Menu", MenuControlsHelper.GenerateMenu(MenuControlsHelper.MenuPages.None, CurrentUserHelper.Instance.CurrentUser)) }
+
+<h2>Index</h2>
+
